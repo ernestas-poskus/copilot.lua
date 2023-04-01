@@ -87,24 +87,24 @@ end
 local function is_ft_disabled(ft, filetypes)
   if filetypes[ft] ~= nil then
     return not resolve_filetype_enabled(filetypes[ft]),
-      string.format("'filetype' %s rejected by config filetypes[%s]", ft, ft)
+        string.format("'filetype' %s rejected by config filetypes[%s]", ft, ft)
   end
 
   local short_ft = string.gsub(ft, "%..*", "")
 
   if filetypes[short_ft] ~= nil then
     return not resolve_filetype_enabled(filetypes[short_ft]),
-      string.format("'filetype' %s rejected by config filetypes[%s]", ft, short_ft)
+        string.format("'filetype' %s rejected by config filetypes[%s]", ft, short_ft)
   end
 
   if filetypes["*"] ~= nil then
     return not resolve_filetype_enabled(filetypes["*"]),
-      string.format("'filetype' %s rejected by config filetypes[%s]", ft, "*")
+        string.format("'filetype' %s rejected by config filetypes[%s]", ft, "*")
   end
 
   if internal_filetypes[short_ft] ~= nil then
     return not internal_filetypes[short_ft],
-      string.format("'filetype' %s rejected by internal_filetypes[%s]", ft, short_ft)
+        string.format("'filetype' %s rejected by internal_filetypes[%s]", ft, short_ft)
   end
 
   return false
@@ -298,7 +298,7 @@ function M.get_network_proxy()
 end
 
 M.get_copilot_path = function()
-  local copilot_path = vim.api.nvim_get_runtime_file("copilot/index.js", false)[1]
+  local copilot_path = vim.api.nvim_get_runtime_file("copilot/dist/agent.js", false)[1]
   if vim.fn.filereadable(copilot_path) ~= 0 then
     return copilot_path
   else
